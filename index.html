@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BESTIAIRE</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #2b2b2b;
+            color: #ffffff;
+            margin: 0;
+            padding: 10px;
+            border-radius: 15px;
+            border: 2px solid #ffd700;
+            width: 300px;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: linear-gradient(90deg, #ff8c00, #ffd700);
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .monster {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .monster img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+        .monster-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .monster-name {
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000000;
+        }
+        .stats, .drops, .advice {
+            margin: 10px 0;
+        }
+        .stats span, .drops span {
+            display: inline-block;
+            width: 50%;
+        }
+        .drops img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+        .advice {
+            background: #555555;
+            padding: 10px;
+            border-radius: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Bestiaire</div>
+    <div class="monster">
+        <img id="monster-image" src="https://dofuswebassets.s3.amazonaws.com/dofus/kamas.png" alt="Monstre">
+        <div class="monster-info">
+            <div id="monster-name" class="monster-name">Bouftou Royal</div>
+            <div class="stats">
+                <span id="monster-hp">PV : 1200</span>
+                <span id="monster-resistance">Résistance : 15%</span>
+            </div>
+        </div>
+    </div>
+    <div class="drops">
+        <strong>Drop Rare :</strong> <br>
+        <span><img src="https://dofuswebassets.s3.amazonaws.com/dofus/resources.png" alt="Ressource"> <span id="drop-item">Laine de Bouftou Royal</span></span><br>
+        <span><img src="https://dofuswebassets.s3.amazonaws.com/dofus/kamas.png" alt="Kamas"> <span id="drop-kamas">250 Kamas</span></span>
+    </div>
+    <div class="advice" id="monster-advice">
+        Conseil : Attaquez-le par l'arrière pour éviter ses charges frontales.
+    </div>
+
+    <script>
+        // Fonction pour mettre à jour les informations du widget
+        function updateBestiaire(monster) {
+            // Mise à jour du nom
+            document.getElementById('monster-name').textContent = monster.name;
+            
+            // Mise à jour de l'image
+            document.getElementById('monster-image').src = monster.image;
+            
+            // Mise à jour des PV
+            document.getElementById('monster-hp').textContent = 'PV : ' + monster.hp;
+            
+            // Mise à jour des résistances
+            document.getElementById('monster-resistance').textContent = 'Résistance : ' + monster.resistance + '%';
+            
+            // Mise à jour des drops
+            document.getElementById('drop-item').textContent = monster.dropItem;
+            document.getElementById('drop-kamas').textContent = monster.kamas + ' Kamas';
+            
+            // Mise à jour du conseil de combat
+            document.getElementById('monster-advice').textContent = 'Conseil : ' + monster.advice;
+        }
+
+        // Exemple d'appel pour changer les informations
+        const bouftouRoyal = {
+            name: 'Bouftou Royal',
+            image: 'https://dofuswebassets.s3.amazonaws.com/dofus/kamas.png', // Remplace par une vraie image
+            hp: 1200,
+            resistance: 15,
+            dropItem: 'Laine de Bouftou Royal',
+            kamas: 250,
+            advice: 'Évitez ses charges frontales.'
+        };
+
+        // Appel de la fonction au chargement pour initialiser
+        updateBestiaire(bouftouRoyal);
+
+        // Exemple d'appel dynamique : Appelle cette fonction avec un nouveau monstre quand tu veux changer les infos.
+        const tofu = {
+            name: 'Tofu Royal',
+            image: 'https://dofuswebassets.s3.amazonaws.com/dofus/tofu.png', // Remplace par une vraie image
+            hp: 900,
+            resistance: 10,
+            dropItem: 'Plume de Tofu',
+            kamas: 180,
+            advice: 'Attaquez à distance pour éviter les griffures.'
+        };
+
+        // Met à jour dynamiquement l'affichage avec un autre monstre, tu peux l'appeler depuis la console du navigateur ou avec des boutons dans le chat par exemple
+        // updateBestiaire(tofu);
+    </script>
+</body>
+</html>
